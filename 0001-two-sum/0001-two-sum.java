@@ -1,17 +1,13 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        // Map to store: Number -> Index
-        Map<Integer, Integer> seenNumbers = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            int complement = target - nums[i];
-            // Check if the required complement was already seen
-            if (seenNumbers.containsKey(complement)) {
-                return new int[] { seenNumbers.get(complement), i };
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] == target - nums[i]) {
+                    return new int[] { i, j };
+                }
             }
-            // Otherwise, remember this number and its index
-            seenNumbers.put(nums[i], i);
         }
-        // Return empty array if no pair found
+        // If no valid pair is found, return an empty array instead of null
         return new int[] {};
     }
 }
